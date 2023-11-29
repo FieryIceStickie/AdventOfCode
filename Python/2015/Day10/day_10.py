@@ -20,7 +20,7 @@ def solver(num: str):
 if __name__ == '__main__':
     testing = False
 
-    with open(test_path if testing else root_path / '2015/Day 10/day_10.txt', 'r') as file:
+    with open(test_path if testing else root_path / '2015/Day10/day_10.txt', 'r') as file:
         data = parser(file)
 
     pt1, pt2 = solver(data)

@@ -76,7 +76,7 @@ def part_b_solver(memory: dict[str, int], data: dict[str, list[str]], a_signal: 
 if __name__ == '__main__':
     testing = False
 
-    with open(test_path if testing else root_path / '2015/Day 7/day_7.txt', 'r') as file:
+    with open(test_path if testing else root_path / '2015/Day7/day_7.txt', 'r') as file:
         memory, data = parser(file)
 
     print(res := part_a_solver(memory.copy(), data))

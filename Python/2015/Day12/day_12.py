@@ -34,7 +34,7 @@ def part_b_solver(data: dict):
 if __name__ == '__main__':
     testing = False
 
-    with open(test_path if testing else root_path / '2015/Day 12/day_12.txt', 'r') as file:
+    with open(test_path if testing else root_path / '2015/Day12/day_12.txt', 'r') as file:
         data = parser(file)
 
     print(part_a_solver(data))

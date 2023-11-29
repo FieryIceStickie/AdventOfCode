@@ -44,6 +44,6 @@ def simulate(bots: defaultdict[int, list[int]], instructions: dict[int, tuple[bo
 if __name__ == '__main__':
     testing = False
 
-    with open(test_path if testing else root_path / '2016/Day 10/day_10.txt', 'r') as file:
+    with open(test_path if testing else root_path / '2016/Day10/day_10.txt', 'r') as file:
         bots, instructions = parser(file)
     print(simulate(bots, instructions))

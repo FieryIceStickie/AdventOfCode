@@ -26,7 +26,7 @@ def part_b_solver(graph: dict[str, dict[str, int]]):
 if __name__ == '__main__':
     testing = False
 
-    with open(test_path if testing else root_path / '2015/Day 9/day_9.txt', 'r') as file:
+    with open(test_path if testing else root_path / '2015/Day9/day_9.txt', 'r') as file:
         data = parser(file)
 
     print(part_a_solver(data))

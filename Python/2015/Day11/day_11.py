@@ -37,7 +37,7 @@ def solve(start: str):
 if __name__ == '__main__':
     testing = False
 
-    with open(test_path if testing else root_path / '2015/Day 11/day_11.txt', 'r') as file:
+    with open(test_path if testing else root_path / '2015/Day11/day_11.txt', 'r') as file:
         data = parser(file)
 
     print(res := solve(data))

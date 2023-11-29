@@ -1,3 +1,4 @@
 Sandbox/
 **/*.txt
-Golf/
+!Python/requirements.txt
+Python/Golf/

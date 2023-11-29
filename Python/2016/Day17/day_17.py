@@ -48,7 +48,7 @@ def part_b_solver(passcode: str):
 if __name__ == '__main__':
     testing = False
 
-    with open(test_path if testing else root_path / '2016/Day 17/day_17.txt', 'r') as file:
+    with open(test_path if testing else root_path / '2016/Day17/day_17.txt', 'r') as file:
         data = parser(file)
 
     print(part_a_solver(data))

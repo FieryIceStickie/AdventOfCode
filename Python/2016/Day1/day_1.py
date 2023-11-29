@@ -32,7 +32,7 @@ def part_b_solver(steps: list[tuple[complex, int]]):
 if __name__ == '__main__':
     testing = False
 
-    with open(test_path if testing else root_path / '2016/Day 1/day_1.txt', 'r') as file:
+    with open(test_path if testing else root_path / '2016/Day1/day_1.txt', 'r') as file:
         data = parser(file)
 
     print(part_a_solver(data))

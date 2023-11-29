@@ -62,7 +62,7 @@ def part_b_solver(node_count: int, graph: dict[int, dict[int, int]]):
 if __name__ == '__main__':
     testing = False
 
-    with open(test_path if testing else root_path / '2016/Day 24/day_24.txt', 'r') as file:
+    with open(test_path if testing else root_path / '2016/Day24/day_24.txt', 'r') as file:
         grid, goals = parser(file)
 
     node_count, graph = get_graph(grid, goals)

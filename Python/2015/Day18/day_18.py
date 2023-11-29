@@ -31,7 +31,7 @@ def part_b_solver(grid: NDArray[bool]):
 if __name__ == '__main__':
     testing = False
 
-    with open(test_path if testing else root_path / '2015/Day 18/day_18.txt', 'r') as file:
+    with open(test_path if testing else root_path / '2015/Day18/day_18.txt', 'r') as file:
         data = parser(file)
 
     print(part_a_solver(data))

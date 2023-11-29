@@ -17,7 +17,7 @@ def part_a_solver(num: int):
 if __name__ == '__main__':
     testing = False
 
-    with open(test_path if testing else root_path / '2016/Day 25/day_25.txt', 'r') as file:
+    with open(test_path if testing else root_path / '2016/Day25/day_25.txt', 'r') as file:
         data = parser(file)
 
     print(part_a_solver(data))

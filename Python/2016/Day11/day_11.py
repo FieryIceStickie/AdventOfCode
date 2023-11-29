@@ -103,7 +103,7 @@ def part_b_solver(floors: list[frozenset], c: int):
 if __name__ == '__main__':
     testing = False
 
-    with open(test_path if testing else root_path / '2016/Day 11/day_11.txt', 'r') as file:
+    with open(test_path if testing else root_path / '2016/Day11/day_11.txt', 'r') as file:
         data, c = parser(file)
     # print(part_a_solver(data))
     print(part_b_solver(data, c))

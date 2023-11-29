@@ -34,7 +34,7 @@ def part_b_solver(screen: np.ndarray):
 if __name__ == '__main__':
     testing = False
 
-    with open(test_path if testing else root_path / '2016/Day 8/day_8.txt', 'r') as file:
+    with open(test_path if testing else root_path / '2016/Day8/day_8.txt', 'r') as file:
         data = parser(file)
 
     screen = do_instructions(data)

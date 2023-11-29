@@ -22,7 +22,7 @@ def part_b_solver(secret_key: str):
 if __name__ == '__main__':
     testing = False
 
-    with open(test_path if testing else root_path / '2016/Day 5/day_5.txt', 'r') as file:
+    with open(test_path if testing else root_path / '2016/Day5/day_5.txt', 'r') as file:
         data = parser(file)
 
     # print(part_a_solver(data))

@@ -21,7 +21,7 @@ def part_b_solver(sides: list[list[int]]):
 if __name__ == '__main__':
     testing = False
 
-    with open(test_path if testing else root_path / '2016/Day 3/day_3.txt', 'r') as file:
+    with open(test_path if testing else root_path / '2016/Day3/day_3.txt', 'r') as file:
         data = parser(file)
 
     print(part_a_solver(data))

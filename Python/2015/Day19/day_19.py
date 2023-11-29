@@ -91,7 +91,7 @@ def part_b_solver(conversions: defaultdict[str, list[str]], seed: list[str], ele
 if __name__ == '__main__':
     testing = False
 
-    with open(test_path if testing else root_path / '2015/Day 19/day_19.txt', 'r') as file:
+    with open(test_path if testing else root_path / '2015/Day19/day_19.txt', 'r') as file:
         data = parser(file)
 
     print(part_a_solver(*data))
