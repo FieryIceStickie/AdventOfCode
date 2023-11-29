@@ -1,25 +1,33 @@
-from typing import TextIO
+import networkx as nx
 
-from Python.path_stuff import *
+def parser(filename: str):
+    with open(filename, 'r') as file:
+        loc_dict = {complex(x, y): v for x, row in enumerate(file.read().splitlines()) for y, v in enumerate(row)}
+        print(max(i.real for i in loc_dict))
+        start, end = next(i for i, v in loc_dict.items() if v == 'S'), next(i for i, v in loc_dict.items() if v == 'E')
+        loc_dict[start] = 'a'
+        loc_dict[end] = 'z'
+        return loc_dict, start, end
 
 
-def parser(raw_data: TextIO):
-    return raw_data.read().splitlines()
+def part_a_solver(loc_dict: dict[complex, str], start: complex, end: complex):
+    def get_neighbours(z: complex):
+        return (z + d for d in (1, 1j, -1, -1j) if z + d in loc_dict and ord(loc_dict[z + d]) <= ord(loc_dict[z]) + 1)
+    graph = nx.DiGraph([(pt, npt, {'weight': 1}) for pt in loc_dict for npt in get_neighbours(pt)])
+    return nx.dijkstra_path_length(graph, start, end, weight='weight')
 
 
-def part_a_solver():
-    return
+def part_b_solver(loc_dict: dict[complex, str], start: complex, end: complex):
+    a_loc = tuple(i for i, v in loc_dict.items() if v == 'a')
+    def get_neighbours(z: complex):
+        return tuple(z + d for d in (1, 1j, -1, -1j) if z + d in loc_dict and ord(loc_dict[z + d]) >= ord(loc_dict[z]) - 1) + \
+            ((start,) if loc_dict[z] == 'a' else tuple())
 
-
-def part_b_solver():
-    return 
+    graph = nx.DiGraph([(pt, npt, {'weight': 1}) for pt in loc_dict for npt in get_neighbours(pt)])
+    return nx.dijkstra_path_length(graph, end, start, weight='weight') - 1
 
 
 if __name__ == '__main__':
-    testing = False
-
-    with open(test_path if testing else root_path / '2022/Day12/day_12.txt', 'r') as file:
-        data = parser(file)
-
-    print(part_a_solver(data))
-    print(part_b_solver(data))
+    inputs = parser('day_12.txt')
+    print(part_a_solver(*inputs))
+    print(part_b_solver(*inputs))

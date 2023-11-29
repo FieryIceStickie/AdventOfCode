@@ -5,3 +5,4 @@ regex~=2023.10.3
 scipy~=1.11.4
 requests~=2.31.0
 bitarray~=2.8.3
+tqdm~=4.66.1

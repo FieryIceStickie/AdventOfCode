@@ -1,25 +1,25 @@
-from typing import TextIO
-
-from Python.path_stuff import *
-
-
-def parser(raw_data: TextIO):
-    return raw_data.read().splitlines()
+from string import ascii_lowercase, ascii_uppercase
+from more_itertools import chunked
 
 
-def part_a_solver():
-    return
+def parser(filename: str):
+    with open(filename, 'r') as file:
+        return file.read().splitlines()
 
 
-def part_b_solver():
-    return 
+priority_dict = {**{i: ord(i) - 96 for i in 'abcdefghijklmnopqrstuvwxyz'},
+                 **{i: ord(i) - 38 for i in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'}}
+
+
+def part_a_solver(rucksacks: list[str]):
+    return sum(priority_dict[({*i[:(halfway := len(i) // 2)]}&{*i[halfway:]}).pop()] for i in rucksacks)
+
+
+def part_b_solver(rucksacks: list[str]):
+    return sum(priority_dict[({*x}&{*y}&{*z}).pop()] for x, y, z in chunked(rucksacks, 3))
 
 
 if __name__ == '__main__':
-    testing = False
-
-    with open(test_path if testing else root_path / '2022/Day3/day_3.txt', 'r') as file:
-        data = parser(file)
-
-    print(part_a_solver(data))
-    print(part_b_solver(data))
+    inputs = parser('day_3.txt')
+    print(part_a_solver(inputs))
+    print(part_b_solver(inputs))
