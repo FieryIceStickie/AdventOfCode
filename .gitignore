@@ -1,4 +1,4 @@
 Sandbox/
-**/*.txt
-!requirements.txt
+**/input.txt
+**/test.txt
 Python/Golf/
