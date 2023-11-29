@@ -1,10 +1,9 @@
-from typing import TextIO
 import re
 from collections import Counter
 from operator import itemgetter
+from typing import TextIO
 
 from Python.path_stuff import *
-
 
 pattern = re.compile(r'([a-z]+)(\d+)\[(\w{5})]')
 other_pattern = re.compile(r'([a-z-]+)-(\d+).*')

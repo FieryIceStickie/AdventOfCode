@@ -1,7 +1,7 @@
-from typing import TextIO
-from collections import defaultdict
-from itertools import pairwise, count
 import re
+from collections import defaultdict
+from itertools import count, pairwise
+from typing import TextIO
 
 from Python.path_stuff import *
 

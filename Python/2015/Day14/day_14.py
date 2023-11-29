@@ -1,9 +1,9 @@
+import re
+from functools import partial
+from itertools import starmap
 from typing import TextIO
 
 from Python.path_stuff import *
-import re
-from itertools import starmap
-from functools import partial
 
 
 def parser(raw_data: TextIO):

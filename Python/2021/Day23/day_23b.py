@@ -1,7 +1,6 @@
-from typing import Any
 import heapq
-from typing import NamedTuple
 from functools import lru_cache
+from typing import Any, NamedTuple
 
 reverse_symbol_dict = {0: 'A', 1: 'B', 2: 'C', 3: 'D'}
 amphipod_energy_dict = {0: 1, 1: 10, 2: 100, 3: 1000}

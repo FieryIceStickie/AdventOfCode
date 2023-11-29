@@ -1,7 +1,7 @@
-from typing import Any
 import cProfile
 import pstats
 import re
+from typing import Any
 
 
 def parser(*inputs: Any, file_name: str = '', testing: bool = False) -> Any:

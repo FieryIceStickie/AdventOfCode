@@ -1,5 +1,5 @@
-from typing import TextIO
 from math import log
+from typing import TextIO
 
 from Python.path_stuff import *
 

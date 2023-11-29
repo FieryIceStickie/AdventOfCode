@@ -1,4 +1,5 @@
-from typing import TextIO, Iterator
+from typing import Iterator, TextIO
+
 from bitarray import bitarray
 
 from Python.path_stuff import *

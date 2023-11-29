@@ -1,8 +1,10 @@
 import re
-from Tools.utils import display_visited
-from typing import Self, NamedTuple
 from collections import Counter
 from itertools import combinations, product
+from typing import NamedTuple, Self
+
+from Tools.utils import display_visited
+
 
 def parser(filename: str) -> tuple[list, list]:
     with open(filename, 'r') as file:

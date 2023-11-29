@@ -1,7 +1,7 @@
-from typing import TextIO
 import hashlib
 from itertools import count, islice
 from operator import itemgetter
+from typing import TextIO
 
 from Python.path_stuff import *
 

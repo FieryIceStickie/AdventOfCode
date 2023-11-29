@@ -1,7 +1,8 @@
-from typing import Any
-import numpy as np
-from functools import reduce
 import operator
+from functools import reduce
+from typing import Any
+
+import numpy as np
 
 
 def parser(*inputs: Any, file_name: str = '', testing: bool = False) -> Any:

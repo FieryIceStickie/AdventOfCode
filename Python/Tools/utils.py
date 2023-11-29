@@ -1,7 +1,6 @@
-from typing import Iterator, Iterable
 from collections import deque
 from itertools import islice
-
+from typing import Iterable, Iterator
 
 deltas = (-1, 1j, 1, -1j)
 facing_dict = {

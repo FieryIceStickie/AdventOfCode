@@ -1,6 +1,6 @@
 import ast
 from itertools import zip_longest
-from typing import Callable, TypeVar, Any
+from typing import Any, Callable, TypeVar
 
 V = TypeVar('V', bound=Any)
 N = list["N | int"]

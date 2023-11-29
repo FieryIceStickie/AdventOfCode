@@ -1,5 +1,6 @@
 import networkx as nx
 
+
 def parser(filename: str):
     with open(filename, 'r') as file:
         loc_dict = {complex(x, y): v for x, row in enumerate(file.read().splitlines()) for y, v in enumerate(row)}

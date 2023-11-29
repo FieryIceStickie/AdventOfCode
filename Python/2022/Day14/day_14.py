@@ -1,6 +1,8 @@
 import time
 from itertools import pairwise
+
 from Tools.utils import display_visited
+
 
 def parser(filename: str):
     with open(filename, 'r') as file:

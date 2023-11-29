@@ -1,5 +1,5 @@
-from typing import Any
 from collections import Counter
+from typing import Any
 
 
 def parser(*inputs: Any, file_name: str = '', testing: bool = False) -> Any:

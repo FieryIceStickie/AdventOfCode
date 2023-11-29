@@ -1,8 +1,8 @@
+import re
+from functools import reduce
 from typing import TextIO
 
 from Python.path_stuff import *
-from functools import reduce
-import re
 
 
 def parser(raw_data: TextIO):

@@ -1,5 +1,6 @@
 import re
 from functools import cache
+
 import networkx as nx
 
 

@@ -1,8 +1,7 @@
-from typing import Any
 import cProfile
 import pstats
-from typing import NamedTuple
 import re
+from typing import Any, NamedTuple
 
 
 class CuboidRange(NamedTuple):

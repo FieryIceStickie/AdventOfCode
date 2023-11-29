@@ -1,6 +1,6 @@
-from typing import TextIO
 import re
 from math import prod
+from typing import TextIO
 
 from Python.path_stuff import *
 

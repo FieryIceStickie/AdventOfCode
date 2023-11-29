@@ -1,5 +1,7 @@
 from itertools import accumulate
+
 import numpy as np
+
 
 def parser(filename: str):
     with open(filename, 'r') as file:

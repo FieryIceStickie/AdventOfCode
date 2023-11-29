@@ -1,8 +1,8 @@
 import os
+
 import requests
 
 from Python.path_stuff import root_path
-
 
 with open(root_path / 'Tools/template.py', 'r') as file:
     template = file.read()

@@ -1,5 +1,5 @@
-from typing import Any
 from collections import Counter
+from typing import Any
 
 
 class Polymer:

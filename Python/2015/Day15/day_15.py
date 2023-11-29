@@ -1,9 +1,9 @@
+import re
 from typing import TextIO
 
-from Python.path_stuff import *
-
 import numpy as np
-import re
+
+from Python.path_stuff import *
 
 
 def parser(raw_data: TextIO):

@@ -1,9 +1,9 @@
+import re
+from collections import defaultdict
+from itertools import chain, islice, permutations
 from typing import TextIO
 
 from Python.path_stuff import *
-import re
-from collections import defaultdict
-from itertools import permutations, islice, chain
 
 
 def parser(raw_data: TextIO):

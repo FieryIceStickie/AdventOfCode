@@ -1,4 +1,5 @@
-from Tools.utils import surround, sgn, display_visited, ctt
+from Tools.utils import ctt, display_visited, sgn, surround
+
 
 def parser(filename: str):
     with open(filename, 'r') as file:

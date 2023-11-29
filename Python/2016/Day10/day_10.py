@@ -1,8 +1,8 @@
-from typing import TextIO
 import re
 from collections import defaultdict, deque
 from math import prod
 from operator import itemgetter
+from typing import TextIO
 
 from Python.path_stuff import *
 

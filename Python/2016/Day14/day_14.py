@@ -1,9 +1,9 @@
-from typing import TextIO
-from hashlib import md5
 import re
-from itertools import count, repeat
-from collections import deque, defaultdict
+from collections import defaultdict, deque
 from collections.abc import Callable
+from hashlib import md5
+from itertools import count, repeat
+from typing import TextIO
 
 from Python.path_stuff import *
 

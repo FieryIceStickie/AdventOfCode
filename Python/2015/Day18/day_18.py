@@ -1,10 +1,10 @@
 from typing import TextIO
 
-from Python.path_stuff import *
-
-import scipy
 import numpy as np
+import scipy
 from numpy.typing import NDArray
+
+from Python.path_stuff import *
 
 
 def parser(raw_data: TextIO):

@@ -1,9 +1,8 @@
-from typing import TextIO
 from collections import deque
 from itertools import count
+from typing import TextIO
 
 from Python.path_stuff import *
-
 
 
 def parser(raw_data: TextIO):

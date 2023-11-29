@@ -1,10 +1,10 @@
-from typing import TextIO, Iterator
+import heapq
+import re
+from functools import lru_cache
+from itertools import chain, combinations
+from typing import Iterator, TextIO
 
 from Python.path_stuff import *
-import re
-from itertools import combinations, chain
-import heapq
-from functools import lru_cache
 
 
 def parser(raw_data: TextIO):

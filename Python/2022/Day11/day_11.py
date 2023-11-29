@@ -1,8 +1,10 @@
-from typing import Callable
 import re
 from collections import Counter
-import numpy as np
 from copy import deepcopy
+from typing import Callable
+
+import numpy as np
+
 
 def parser(filename: str):
     with open(filename, 'r') as file:
@@ -52,6 +54,7 @@ def part_b_solver(monkeys: list[list[list[int], tuple[int | None, Callable[[np.n
 
 if __name__ == '__main__':
     import time
+
     # import cProfile
     # import pstats
     # with cProfile.Profile() as pr:

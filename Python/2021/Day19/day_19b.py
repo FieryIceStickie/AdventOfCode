@@ -1,7 +1,8 @@
-from typing import Any
-import numpy as np
-from itertools import product, permutations
 from collections import Counter
+from itertools import permutations, product
+from typing import Any
+
+import numpy as np
 
 
 def parser(*inputs: Any, file_name: str = '', testing: bool = False) -> Any:

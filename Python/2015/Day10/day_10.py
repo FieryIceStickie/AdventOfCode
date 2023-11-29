@@ -1,5 +1,5 @@
-from typing import TextIO
 from itertools import groupby
+from typing import TextIO
 
 from Python.path_stuff import *
 

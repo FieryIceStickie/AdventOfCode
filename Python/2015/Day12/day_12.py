@@ -1,8 +1,7 @@
+import json
 from typing import TextIO
 
 from Python.path_stuff import *
-
-import json
 
 
 def parser(raw_data: TextIO):

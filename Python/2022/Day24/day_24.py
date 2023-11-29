@@ -1,7 +1,7 @@
-from functools import cache
-from math import lcm
 from collections import deque
+from functools import cache
 from itertools import count
+from math import lcm
 
 
 def parser(filename: str):

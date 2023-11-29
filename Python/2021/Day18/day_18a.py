@@ -1,7 +1,7 @@
-from typing import Any
 import ast
 import operator
 from functools import reduce
+from typing import Any
 
 
 def parser(*inputs: Any, file_name: str = '', testing: bool = False) -> Any:

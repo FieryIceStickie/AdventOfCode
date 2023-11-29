@@ -1,8 +1,7 @@
+from itertools import chain
 from typing import TextIO
 
 from Python.path_stuff import *
-
-from itertools import chain
 
 
 def parser(raw_data: TextIO):

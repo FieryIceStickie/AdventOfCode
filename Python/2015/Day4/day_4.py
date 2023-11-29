@@ -1,6 +1,6 @@
-from typing import TextIO
 import hashlib
 from itertools import count
+from typing import TextIO
 
 from Python.path_stuff import *
 

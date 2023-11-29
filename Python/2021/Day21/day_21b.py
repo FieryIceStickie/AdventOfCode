@@ -1,11 +1,10 @@
-from typing import Any
 import cProfile
 import pstats
 import re
-from typing import NamedTuple
 from collections import Counter
-from itertools import product
 from functools import cache
+from itertools import product
+from typing import Any, NamedTuple
 
 
 # noinspection PyTypeChecker

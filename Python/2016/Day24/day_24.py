@@ -1,9 +1,9 @@
+from collections import deque
+from functools import reduce
+from itertools import permutations
 from typing import TextIO
 
-from collections import deque
 from Python.path_stuff import *
-from itertools import permutations
-from functools import reduce
 
 
 def parser(raw_data: TextIO):

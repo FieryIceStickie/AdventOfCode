@@ -1,8 +1,9 @@
 import re
-from itertools import pairwise
-from Tools.utils import display_visited, ctt
-from math import prod
 import time
+from itertools import pairwise
+from math import prod
+
+from Tools.utils import ctt, display_visited
 
 
 def parser(filename: str):

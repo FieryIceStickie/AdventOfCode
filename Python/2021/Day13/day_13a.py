@@ -1,6 +1,7 @@
-from typing import Any
-import numpy as np
 import re
+from typing import Any
+
+import numpy as np
 
 
 def parser(*inputs: Any, file_name: str = '', testing: bool = False) -> Any:

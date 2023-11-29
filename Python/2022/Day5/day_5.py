@@ -1,8 +1,8 @@
 import re
 from collections import defaultdict
+from copy import deepcopy
 from itertools import repeat
 from typing import NamedTuple
-from copy import deepcopy
 
 
 class Move(NamedTuple):

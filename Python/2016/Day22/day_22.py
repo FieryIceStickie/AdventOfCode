@@ -1,7 +1,6 @@
-from typing import TextIO
 import re
 from itertools import islice, permutations
-from typing import NamedTuple
+from typing import NamedTuple, TextIO
 
 from Python.path_stuff import *
 

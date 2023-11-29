@@ -1,5 +1,5 @@
-from typing import TextIO
 from collections import Counter
+from typing import TextIO
 
 from Python.path_stuff import *
 

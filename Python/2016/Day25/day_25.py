@@ -1,8 +1,8 @@
-from typing import TextIO
 from math import log
-from Python.Tools.utils import try_int
+from typing import TextIO
 
 from Python.path_stuff import *
+from Python.Tools.utils import try_int
 
 
 def parser(raw_data: TextIO):

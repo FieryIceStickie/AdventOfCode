@@ -1,7 +1,8 @@
-import numpy as np
-from itertools import product
-import networkx as nx
 from collections import deque
+from itertools import product
+
+import networkx as nx
+import numpy as np
 
 
 def parser(filename: str):

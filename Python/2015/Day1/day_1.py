@@ -1,7 +1,7 @@
+from itertools import accumulate
 from typing import TextIO
 
 from Python.path_stuff import *
-from itertools import accumulate
 
 
 def parser(raw_data: TextIO):

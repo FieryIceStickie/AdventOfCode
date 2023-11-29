@@ -1,5 +1,5 @@
+from operator import and_, lshift, or_, rshift
 from typing import TextIO
-from operator import lshift, rshift, and_, or_
 
 from Python.path_stuff import *
 

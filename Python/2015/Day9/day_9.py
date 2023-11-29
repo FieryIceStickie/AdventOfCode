@@ -1,7 +1,7 @@
-from typing import TextIO
-from collections import defaultdict
 import re
-from itertools import permutations, pairwise
+from collections import defaultdict
+from itertools import pairwise, permutations
+from typing import TextIO
 
 from Python.path_stuff import *
 

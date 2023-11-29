@@ -1,6 +1,7 @@
 from collections import defaultdict, deque
-from Tools.utils import display_visited
 from itertools import count
+
+from Tools.utils import display_visited
 
 
 def parser(filename: str):

@@ -1,9 +1,10 @@
-from typing import Any
 import cProfile
 import pstats
-import numpy as np
-from itertools import product
 from collections import Counter
+from itertools import product
+from typing import Any
+
+import numpy as np
 
 
 def parser(*inputs: Any, file_name: str = '', testing: bool = False) -> Any:

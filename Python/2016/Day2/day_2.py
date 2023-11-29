@@ -1,5 +1,5 @@
-from typing import TextIO
 from io import StringIO
+from typing import TextIO
 
 from Python.path_stuff import *
 from Python.Tools.utils import facing_dict

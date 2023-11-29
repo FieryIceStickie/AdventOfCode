@@ -1,8 +1,8 @@
-from typing import TextIO
 from collections.abc import Iterator
+from itertools import pairwise
+from typing import TextIO
 
 from Python.path_stuff import *
-from itertools import pairwise
 
 
 def parser(raw_data: TextIO):

@@ -1,5 +1,5 @@
-from operator import gt, lt, eq
 import re
+from operator import eq, gt, lt
 from typing import TextIO
 
 from Python.path_stuff import *

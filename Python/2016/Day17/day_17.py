@@ -1,9 +1,9 @@
-from typing import TextIO
-from hashlib import md5
 from collections import deque
-from Python.Tools.utils import inverse_facing_dict
+from hashlib import md5
+from typing import TextIO
 
 from Python.path_stuff import *
+from Python.Tools.utils import inverse_facing_dict
 
 
 def parser(raw_data: TextIO):

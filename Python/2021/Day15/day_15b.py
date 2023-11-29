@@ -1,6 +1,6 @@
-from typing import Any
+from typing import Any, TypeVar
+
 import networkx as nx
-from typing import TypeVar
 
 T = TypeVar('T', list, str)
 

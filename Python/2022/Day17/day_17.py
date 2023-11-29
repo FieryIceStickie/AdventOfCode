@@ -1,8 +1,8 @@
-from itertools import cycle
 from functools import cache
-from Tools.utils import display_visited, ctt
-import numpy as np
+from itertools import cycle
 
+import numpy as np
+from Tools.utils import ctt, display_visited
 
 
 def parser(filename: str):

@@ -1,7 +1,9 @@
-from functools import cache
 import re
-from operator import add, sub, mul, truediv
-from attrs import define, Factory
+from functools import cache
+from operator import add, mul, sub, truediv
+
+from attrs import Factory, define
+
 
 def parser(filename: str):
     with open(filename, 'r') as file:

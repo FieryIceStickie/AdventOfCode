@@ -1,6 +1,7 @@
+from math import ceil, floor
 from typing import Any
+
 import numpy as np
-from math import floor, ceil
 
 
 def parser(*inputs: Any, file_name: str = '', testing: bool = False) -> Any:
