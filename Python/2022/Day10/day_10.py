@@ -1,25 +1,40 @@
-from typing import TextIO
+from itertools import accumulate
+import numpy as np
 
-from Python.path_stuff import *
-
-
-def parser(raw_data: TextIO):
-    return raw_data.read().splitlines()
-
-
-def part_a_solver():
-    return
+def parser(filename: str):
+    with open(filename, 'r') as file:
+        return file.read().splitlines()
 
 
-def part_b_solver():
-    return 
+def part_a_solver(instructions: list[str]):
+    cycles = [1 if i == 'noop' else 2 for i in instructions]
+    adds = [0 if not i[5:] else int(i[5:]) for i in instructions]
+    cum_cycles = np.array([*accumulate(cycles)])
+    cum_adds = np.array([*accumulate(adds)]) + 1
+    idxs = np.searchsorted(cum_cycles, np.arange(20, 221, 40)) - 1
+    return sum(cum_adds[idxs] * np.arange(20, 221, 40))
+
+
+def part_b_solver(instructions: list[str]):
+    cycles = [1 if i == 'noop' else 2 for i in instructions]
+    adds = [0 if not i[5:] else int(i[5:]) for i in instructions]
+    cum_cycles = np.array([*accumulate(cycles)])
+    cum_adds = np.array([*accumulate(adds)]) + 1
+
+    screen = np.zeros((6, 40))
+    sprite_pos = 1
+    i = 0
+    for (r, c), _ in np.ndenumerate(screen):
+        cycle = 40 * r + c
+        if cycle in cum_cycles:
+            sprite_pos = cum_adds[i]
+            i += 1
+        if abs(c - sprite_pos) <= 1:
+            screen[(r, c)] = 1
+    return '\n'.join(''.join('█' if i else '.' for i in row) for row in screen)
 
 
 if __name__ == '__main__':
-    testing = False
-
-    with open(test_path if testing else root_path / '2022/Day10/day_10.txt', 'r') as file:
-        data = parser(file)
-
-    print(part_a_solver(data))
-    print(part_b_solver(data))
+    inputs = parser('day_10.txt')
+    print(part_a_solver(inputs))
+    print(part_b_solver(inputs))

@@ -1,5 +1,6 @@
 from typing import Iterator, Iterable
 from collections import deque
+from itertools import islice
 
 
 deltas = (-1, 1j, 1, -1j)
@@ -37,3 +38,23 @@ def windowed(iterable: Iterable, n: int):
     for x in it:
         window.append(x)
         yield tuple(window)
+
+def display_visited(visited: set[complex], icons: dict[complex, str] = None,
+                    visited_icon: str = '.',
+                    transpose: bool = True):
+    if icons is None:
+        icons = dict()
+    if transpose:
+        visited = {switch(z) for z in visited}
+        icons = {switch(z): v for z, v in icons.items()}
+    reals, imags = {int(i.real) for s in (visited, icons.keys()) for i in s}, \
+        {int(i.imag) for s in (visited, icons.keys()) for i in s}
+    real_min, real_max, imag_min, imag_max = min(reals), max(reals), min(imags), max(imags)
+    icon_dict = {0+0j: 's', **{i: '#' for i in visited},**icons}
+    print(*(''.join(icon_dict.get(complex(x, y), visited_icon)
+                    for x in range(real_min, real_max + 1))
+            for y in range(imag_min, imag_max + 1)),
+          sep='\n', end='\n\n')
+
+def switch(z: complex):
+    return z.imag + 1j*z.real

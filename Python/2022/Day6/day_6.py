@@ -1,25 +1,20 @@
-from typing import TextIO
-
-from Python.path_stuff import *
+from more_itertools import windowed
 
 
-def parser(raw_data: TextIO):
-    return raw_data.read().splitlines()
+def parser(filename: str):
+    with open(filename, 'r') as file:
+        return file.read()
 
 
-def part_a_solver():
-    return
+def part_a_solver(data: str):
+    return next(i + 4 for i, v in enumerate(windowed(data, 4)) if len(set(v)) == 4)
 
 
-def part_b_solver():
-    return 
+def part_b_solver(data: str):
+    return next(i + 14 for i, v in enumerate(windowed(data, 14)) if len(set(v)) == 14)
 
 
 if __name__ == '__main__':
-    testing = False
-
-    with open(test_path if testing else root_path / '2022/Day6/day_6.txt', 'r') as file:
-        data = parser(file)
-
-    print(part_a_solver(data))
-    print(part_b_solver(data))
+    inputs = parser('day_6.txt')
+    print(part_a_solver(inputs))
+    print(part_b_solver(inputs))
