@@ -4,7 +4,7 @@ from typing import TextIO
 from Python.path_stuff import *
 
 
-def parser(raw_data: TextIO):
+def parser(raw_data: TextIO) -> list[str]:
     return raw_data.read().splitlines()
 
 
