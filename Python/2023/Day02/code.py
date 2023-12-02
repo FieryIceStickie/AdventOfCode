@@ -15,17 +15,13 @@ def parser(raw_data: TextIO) -> list[list[Counter[str]]]:
             for line in raw_data.read().splitlines()]
 
 
-def part_a_solver(games: list[list[Counter[str]]]) -> int:
+def solver(games: list[list[Counter[str]]]) -> tuple[int, int]:
     threshold = Counter({'red': 12, 'green': 13, 'blue': 14})
-    return sum(
-        idx
-        for idx, bags in enumerate(games, start=1)
-        if all(bag <= threshold for bag in bags)
-    )
-
-
-def part_b_solver(games: list[list[Counter[str]]]) -> int:
-    return sum(prod(reduce(or_, game).values()) for game in games)
+    mega_bags = [reduce(or_, game) for game in games]
+    return (
+        sum(idx for idx, bag in enumerate(mega_bags, start=1) if bag <= threshold),
+        sum(prod(bag.values()) for bag in mega_bags),
+            )
 
 
 if __name__ == '__main__':
@@ -34,5 +30,4 @@ if __name__ == '__main__':
     with open(test_path if testing else 'input.txt', 'r') as file:
         data = parser(file)
 
-    print(part_a_solver(data))
-    print(part_b_solver(data))
+    print(*solver(data))
