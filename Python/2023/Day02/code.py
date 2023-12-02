@@ -21,7 +21,7 @@ def solver(games: list[list[Counter[str]]]) -> tuple[int, int]:
     return (
         sum(idx for idx, bag in enumerate(mega_bags, start=1) if bag <= threshold),
         sum(prod(bag.values()) for bag in mega_bags),
-            )
+    )
 
 
 if __name__ == '__main__':
