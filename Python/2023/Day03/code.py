@@ -18,7 +18,7 @@ def parser(raw_data: TextIO) -> tuple[dict[complex, complex], dict[complex, str]
                 continue
             elif group[0].isdigit():
                 num = int(''.join(group))
-                for _ in range(len(group)):
+                for _ in group:
                     loc_dict[x + 1j*y] = num + 1j*identifier
                     y += 1
                 identifier += 1
