@@ -3,6 +3,8 @@ from itertools import islice
 from typing import Iterable, Iterator
 
 deltas = (-1, 1j, 1, -1j)
+corner_deltas = (-1+1j, 1+1j, 1-1j, -1-1j)
+all_deltas = (-1, -1+1j, 1j, 1+1j, 1, 1-1j, -1j, -1-1j)
 facing_dict = {
     'letters': dict(zip('URDL', deltas)),
     'arrows': dict(zip('^>v<', deltas)),
