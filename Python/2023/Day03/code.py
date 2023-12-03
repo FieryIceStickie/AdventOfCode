@@ -9,23 +9,23 @@ from Python.Tools.utils import all_deltas
 def parser(raw_data: TextIO) -> tuple[dict[complex, complex], dict[complex, str]]:
     loc_dict = {}
     symbols = {}
-    c = 0
+    identifier = 0
     for x, row in enumerate(raw_data.read().splitlines()):
         y = 0
-        for k, (*g,) in groupby(row, key=lambda c: c.isdigit() or c):
-            if g[0] == '.':
-                y += len(g)
+        for key, (*group,) in groupby(row, key=lambda c: c.isdigit() or c):
+            if group[0] == '.':
+                y += len(group)
                 continue
-            elif g[0].isdigit():
-                num = int(''.join(g))
-                for _ in range(len(g)):
-                    loc_dict[x + 1j*y] = num + 1j*c
+            elif group[0].isdigit():
+                num = int(''.join(group))
+                for _ in range(len(group)):
+                    loc_dict[x + 1j*y] = num + 1j*identifier
                     y += 1
-                c += 1
+                identifier += 1
             else:
-                if len(g) != 1:
+                if len(group) != 1:
                     raise ValueError('Adjacent symbols found, pls send help')
-                symbols[x + 1j*y] = g[0]
+                symbols[x + 1j*y] = key
                 y += 1
     return loc_dict, symbols
 
