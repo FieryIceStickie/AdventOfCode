@@ -3,16 +3,23 @@ from typing import TextIO
 from Python.path_stuff import *
 
 
-def parser(raw_data: TextIO):
-    return raw_data.read().splitlines()
+def parser(raw_data: TextIO) -> list[list[set[int], set[int]]]:
+    parts = [line.split('|') for line in raw_data.read().splitlines()]
+    return [[{*wins.split()[2:]}, {*hand.split()}] for wins, hand in parts]
 
 
-def part_a_solver(data):
-    return
-
-
-def part_b_solver(data):
-    return 
+def solver(data: list[list[set[int], set[int]]]) -> tuple[int, int]:
+    cards = [1] * len(data)
+    points = 0
+    copies = 0
+    for wins, hand in data:
+        score = len(wins & hand)
+        points += 1 << score >> 1
+        copy_count, *cards = cards
+        for i in range(score):
+            cards[i] += copy_count
+        copies += copy_count
+    return points, copies
 
 
 if __name__ == '__main__':
@@ -21,5 +28,4 @@ if __name__ == '__main__':
     with open(test_path if testing else 'input.txt', 'r') as file:
         data = parser(file)
 
-    print(part_a_solver(data))
-    print(part_b_solver(data))
+    print(*solver(data))
