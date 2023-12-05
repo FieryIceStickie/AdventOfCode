@@ -15,7 +15,7 @@ def parser(raw_data: TextIO) -> tuple[list[int], list[tuple[int, ...]]]:
     *seeds, = map(int, re.findall(r'\d+', seed_data))
     maps = [
         sorted(
-            [(*map(int, interval.split()),)
+            [tuple(map(int, interval.split()))
              for interval in mapping.split('\n')[1:]],
             key=itemgetter(1),
         )
@@ -46,6 +46,7 @@ def duoconvert(seeds: Iterable[tuple[int, int]], mapping: list[tuple[int, ...]])
     for start, rlen in seeds:
         start_idx = bisect_right(mapping, start, key=itemgetter(1))
         end_idx = bisect_right(mapping, start + rlen, key=itemgetter(1))
+        # Range starts before any of the mappings
         if not start_idx:
             plen = min(rlen, mapping[0][1] - start)
             yield start, plen
@@ -54,6 +55,7 @@ def duoconvert(seeds: Iterable[tuple[int, int]], mapping: list[tuple[int, ...]])
             if not rlen:
                 continue
         for map_idx, (dst, src, mrange) in enumerate(mapping[start_idx - 1:end_idx], start=start_idx - 1):
+            # Select portion of range overlapping with current mapping range
             delta = start - src
             if delta < mrange:
                 plen = min(rlen, mrange - delta)
@@ -63,6 +65,7 @@ def duoconvert(seeds: Iterable[tuple[int, int]], mapping: list[tuple[int, ...]])
             if not rlen:
                 break
 
+            # Select rest of range up to next mapping range
             if map_idx == end_idx - 1:
                 plen = rlen
             else:
@@ -81,7 +84,6 @@ def part_b_solver(seeds: list[int], maps: list[list[tuple[int, ...]]]) -> int:
 
 if __name__ == '__main__':
     testing = False
-
     with open(test_path if testing else 'input.txt', 'r') as file:
         data = parser(file)
 
