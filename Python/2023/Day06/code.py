@@ -1,6 +1,6 @@
-from typing import TextIO
-from math import prod, sqrt, ceil, floor
 from itertools import starmap
+from math import ceil, floor, prod, sqrt
+from typing import TextIO
 
 from Python.path_stuff import *
 
