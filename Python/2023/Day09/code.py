@@ -1,6 +1,6 @@
-from typing import TextIO
+from itertools import accumulate, pairwise
 from math import comb
-from itertools import pairwise, accumulate
+from typing import TextIO
 
 from Python.path_stuff import *
 

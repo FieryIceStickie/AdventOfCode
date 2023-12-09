@@ -1,7 +1,7 @@
-from typing import TextIO
-from itertools import cycle, accumulate
 import re
+from itertools import accumulate, cycle
 from math import lcm
+from typing import TextIO
 
 from Python.path_stuff import *
 
