@@ -1,7 +1,7 @@
+from itertools import count, islice
 from typing import TextIO
 
 from Python.path_stuff import *
-from itertools import count, islice
 
 
 def parser(raw_data: TextIO) -> tuple[frozenset[complex], frozenset[complex], int, int]:

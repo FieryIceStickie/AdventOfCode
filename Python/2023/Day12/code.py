@@ -1,7 +1,7 @@
+from functools import cache
 from typing import TextIO
 
 from Python.path_stuff import *
-from functools import cache
 
 type ParsedData = list[tuple[str, tuple[int]]]
 

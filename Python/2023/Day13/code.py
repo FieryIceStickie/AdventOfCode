@@ -1,6 +1,7 @@
-from typing import TextIO
-import numpy as np
 from io import StringIO
+from typing import TextIO
+
+import numpy as np
 
 from Python.path_stuff import *
 
