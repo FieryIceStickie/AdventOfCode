@@ -2,7 +2,8 @@ from collections import defaultdict
 from typing import TextIO
 
 from Python.path_stuff import *
-from Python.Tools.utils import deltas
+from functools import partial
+import multiprocessing
 
 
 def parser(raw_data: TextIO):
@@ -21,50 +22,53 @@ def parser(raw_data: TextIO):
     }, len(grid_data), len(grid_data[0])
 
 
-def solver(loc_dict: dict[complex, tuple[int, complex]], row_len: int, col_len: int) -> tuple[int, int]:
-    def sim(start: tuple[complex, complex]):
-        visited = defaultdict(set)
-        active = [start]
-        while active:
-            loc, facing = active.pop()
-            if not (row_len > loc.real >= 0 <= loc.imag < col_len):
+def sim(loc_dict: dict[complex, tuple[int, complex]],
+        row_len: int, col_len: int,
+        start: tuple[complex, complex]) -> int:
+    visited = defaultdict(set)
+    active = [start]
+    while active:
+        loc, facing = active.pop()
+        if not (row_len > loc.real >= 0 <= loc.imag < col_len):
+            continue
+        if facing in visited[loc]:
+            continue
+        visited[loc].add(facing)
+        if loc in loc_dict:
+            tile_type, tile_value = loc_dict[loc]
+            if not tile_type:
+                new_facing = (facing * tile_value).conjugate()
+                active.append((loc + new_facing, new_facing))
                 continue
-            if facing in visited[loc]:
-                continue
-            visited[loc].add(facing)
-            if loc in loc_dict:
-                tile_type, tile_value = loc_dict[loc]
-                if not tile_type:
-                    new_facing = (facing * tile_value).conjugate()
+            elif not (facing * tile_value).imag:
+                for d in (1j, -1j):
+                    new_facing = facing * d
                     active.append((loc + new_facing, new_facing))
-                    continue
-                elif not (facing * tile_value).imag:
-                    for d in (1j, -1j):
-                        new_facing = facing * d
-                        active.append((loc + new_facing, new_facing))
-                    continue
-            active.append((loc + facing, facing))
-        return len(visited)
+                continue
+        active.append((loc + facing, facing))
+    return len(visited)
 
-    return sim((0, 1j)), max(
-        sim((z, facing))
-        for facing, locs in zip(
-            deltas,
+def solver(loc_dict: dict[complex, tuple[int, complex]], row_len: int, col_len: int) -> tuple[int, int]:
+    filled_sim = partial(sim, loc_dict, row_len, col_len)
+    with multiprocessing.Pool() as pool:
+        return filled_sim((0, 1j)), max(pool.imap_unordered(
+            filled_sim,
             [
-                [complex(row_len - 1, i) for i in range(col_len)],
-                [complex(i, 0) for i in range(row_len)],
-                [complex(0, i) for i in range(col_len)],
-                [complex(i, col_len - 1) for i in range(row_len)],
-            ]
-        )
-        for z in locs
-    )
-
+                *[(complex(row_len - 1, i), -1) for i in range(col_len)],
+                *[(complex(i, 0), 1j) for i in range(row_len)],
+                *[(complex(0, i), 1) for i in range(col_len)],
+                *[(complex(i, col_len - 1), -1j) for i in range(row_len)],
+            ],
+            chunksize=4,
+        ))
 
 if __name__ == '__main__':
-    testing = False
+    def main():
+        testing = False
 
-    with open(test_path if testing else 'input.txt', 'r') as file:
-        data = parser(file)
+        with open(test_path if testing else 'input.txt', 'r') as file:
+            data = parser(file)
 
-    print(*solver(*data))
+        print(*solver(*data))
+    import timeit
+    print(timeit.timeit(main, number=1))
