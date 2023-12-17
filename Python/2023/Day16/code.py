@@ -27,9 +27,9 @@ def solver(loc_dict: dict[complex, tuple[int, complex]], row_len: int, col_len: 
         active = [start]
         while active:
             loc, facing = active.pop()
-            if facing in visited.get(loc, ()):
-                continue
             if not (row_len > loc.real >= 0 <= loc.imag < col_len):
+                continue
+            if facing in visited[loc]:
                 continue
             visited[loc].add(facing)
             if loc in loc_dict:
