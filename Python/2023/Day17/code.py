@@ -1,10 +1,11 @@
 import heapq
+from collections import defaultdict
+from functools import partial
 from typing import TextIO
+
 import numpy as np
 
 from Python.path_stuff import *
-from collections import defaultdict
-from functools import partial
 
 
 def parser(raw_data: TextIO):

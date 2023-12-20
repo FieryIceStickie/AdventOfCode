@@ -1,16 +1,14 @@
-from typing import TextIO, NamedTuple
-from collections.abc import Callable
-
-from Python.path_stuff import *
 import re
 from bisect import bisect
+from collections.abc import Callable
 from itertools import starmap
-from operator import lt, gt
-
 from math import prod
-from operator import attrgetter
+from operator import attrgetter, gt, lt
+from typing import NamedTuple, TextIO
+
 from attrs import evolve, frozen
 
+from Python.path_stuff import *
 
 
 class Part(NamedTuple):

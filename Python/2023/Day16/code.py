@@ -1,9 +1,9 @@
+import multiprocessing
 from collections import defaultdict
+from functools import partial
 from typing import TextIO
 
 from Python.path_stuff import *
-from functools import partial
-import multiprocessing
 
 
 def parser(raw_data: TextIO):
