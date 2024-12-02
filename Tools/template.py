@@ -1,16 +1,4 @@
-import ast
-from cmath import e, exp
-from cmath import log as ln
-from cmath import pi
-from collections import Counter, defaultdict, deque
-from itertools import *
-from math import (
-    cbrt, ceil, comb, dist, factorial, floor, gcd, isqrt, lcm, perm, sqrt
-)
-from typing import NamedTuple, TextIO
-
-import numpy as np
-from attrs import define, frozen
+from typing import TextIO
 
 from Years.path_stuff import *
 
