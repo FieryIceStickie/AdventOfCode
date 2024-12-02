@@ -75,9 +75,7 @@ def part_b_solver(data):
         for ((xi, yi, zi), (ai, bi, ci)) in data[:5]
     ])
     d = det(m)
-    print(d)
     x, y, a, b, _ = [[det(replace(m, i, b)), d] for i in range(5)]
-    print(min(map(min, (x, y, a, b, _))))
     for num in (x, y, a, b):
         g = gcd(num[0], d)
         num[0] //= g

@@ -33,13 +33,6 @@ def try_int(inp: str) -> str | int:
     except ValueError:
         return inp
 
-def windowed(iterable: Iterable, n: int):
-    it = iter(iterable)
-    window = deque(islice(it, n-1), maxlen=n)
-    for x in it:
-        window.append(x)
-        yield tuple(window)
-
 def display_visited(visited: set[complex], icons: dict[complex, str] = None,
                     visited_icon: str = '.',
                     transpose: bool = True):
@@ -51,7 +44,7 @@ def display_visited(visited: set[complex], icons: dict[complex, str] = None,
     reals, imags = {int(i.real) for s in (visited, icons.keys()) for i in s}, \
         {int(i.imag) for s in (visited, icons.keys()) for i in s}
     real_min, real_max, imag_min, imag_max = min(reals), max(reals), min(imags), max(imags)
-    icon_dict = {0+0j: 's', **{i: '#' for i in visited},**icons}
+    icon_dict = {0+0j: 's', **{i: '#' for i in visited}, **icons}
     print(*(''.join(icon_dict.get(complex(x, y), visited_icon)
                     for x in range(real_min, real_max + 1))
             for y in range(imag_min, imag_max + 1)),
