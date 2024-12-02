@@ -2,3 +2,5 @@ Sandbox/
 **/input.txt
 **/test.txt
 Python/Golf/
+**/.DS_Store
+**/__pycache__/
