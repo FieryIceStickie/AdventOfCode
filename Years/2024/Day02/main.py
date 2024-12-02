@@ -10,13 +10,13 @@ def parser(raw_data: TextIO):
 
 
 def diff(arr: list[int]):
-    return [j - i for i, j in pairwise(arr)]
+    return (j - i for i, j in pairwise(arr))
 
 
 def part_a_solver(levels: list[list[int]]):
     return sum(
-        1 for level in levels
-        if 
+        1 for diffs in map(diff, levels)
+        if d
     )
 
 
