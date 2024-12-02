@@ -2,7 +2,7 @@ from typing import Iterator, TextIO
 
 from bitarray import bitarray
 
-from Years.path_stuff import *
+from Tools.Python.path_stuff import *
 
 
 def parser(raw_data: TextIO):

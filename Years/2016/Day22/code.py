@@ -2,7 +2,7 @@ import re
 from itertools import islice, permutations
 from typing import NamedTuple, TextIO
 
-from Years.path_stuff import *
+from Tools.Python.path_stuff import *
 
 
 class Node(NamedTuple):

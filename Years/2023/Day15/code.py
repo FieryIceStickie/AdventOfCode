@@ -2,7 +2,7 @@ import re
 from functools import reduce
 from typing import TextIO
 
-from Years.path_stuff import *
+from Tools.Python.path_stuff import *
 
 
 def full_solver(raw_data: TextIO):

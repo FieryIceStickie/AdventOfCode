@@ -2,7 +2,7 @@ from collections import deque
 from hashlib import md5
 from typing import TextIO
 
-from Years.path_stuff import *
+from Tools.Python.path_stuff import *
 from Years.Tools.utils import inverse_facing_dict
 
 

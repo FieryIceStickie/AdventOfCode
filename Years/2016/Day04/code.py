@@ -3,7 +3,7 @@ from collections import Counter
 from operator import itemgetter
 from typing import TextIO
 
-from Years.path_stuff import *
+from Tools.Python.path_stuff import *
 
 pattern = re.compile(r'([a-z]+)(\d+)\[(\w{5})]')
 other_pattern = re.compile(r'([a-z-]+)-(\d+).*')

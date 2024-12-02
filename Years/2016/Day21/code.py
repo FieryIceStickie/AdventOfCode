@@ -1,7 +1,7 @@
 import re
 from typing import TextIO
 
-from Years.path_stuff import *
+from Tools.Python.path_stuff import *
 from Years.Tools.utils import try_int
 
 

@@ -1,7 +1,7 @@
 import heapq
 from typing import Any, NamedTuple
 
-from Years.path_stuff import *
+from Tools.Python.path_stuff import *
 
 reverse_symbol_dict = {0: 'A', 1: 'B', 2: 'C', 3: 'D'}
 amphipod_energy_dict = {0: 1, 1: 10, 2: 100, 3: 1000}

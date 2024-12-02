@@ -1,6 +1,7 @@
-from collections import deque
-from itertools import islice
-from typing import Iterable, Iterator
+from collections import defaultdict
+from collections.abc import Sequence
+from itertools import groupby
+from typing import Iterator, Literal, Iterable
 
 deltas = (-1, 1j, 1, -1j)
 corner_deltas = (-1+1j, 1+1j, 1-1j, -1-1j)
@@ -50,5 +51,45 @@ def display_visited(visited: set[complex], icons: dict[complex, str] = None,
             for y in range(imag_min, imag_max + 1)),
           sep='\n', end='\n\n')
 
+
 def switch(z: complex):
     return z.imag + 1j*z.real
+
+
+def all_same[T](items: Iterable[T]) -> bool:
+    g = groupby(items)
+    next(g, None)
+    return not next(g, False)
+
+
+def odd_one_out[T](items: Iterable[T]) -> tuple[bool, int | None]:
+    """
+    Finds the index of the imposter
+    :param items: an iterable
+    :return: all_same(items), idx of imposter
+    """
+    items = [*items]
+    try:
+        idx = next(
+            idx
+            for idx, item in enumerate(items)
+            if item != items[0]
+        )
+    except (StopIteration, IndexError):
+        return True, None
+    if idx == 1 and items[0] != items[2]:
+        idx = 0
+        item = items[1]
+    else:
+        item = items[0]
+    if all_same([item] + items[idx + 1:]):
+        return False, idx
+    return False, None
+
+
+def sgn(n: int) -> int:
+    return (n > 0) - (n < 0)
+
+
+if __name__ == '__main__':
+    print(odd_one_out([2, 1, 1, 1, 1, 1, 1]))

@@ -1,5 +1,4 @@
 import re
-from bisect import bisect
 from collections.abc import Callable
 from itertools import starmap
 from math import prod
@@ -8,7 +7,7 @@ from typing import NamedTuple, TextIO
 
 from attrs import evolve, frozen
 
-from Years.path_stuff import *
+from Tools.Python.path_stuff import *
 
 
 class Part(NamedTuple):

@@ -1,6 +1,6 @@
 Sandbox/
 **/input.txt
-**/test.txt
+Tools/Python/test.txt
 Years/Golf/
 **/.DS_Store
 **/__pycache__/

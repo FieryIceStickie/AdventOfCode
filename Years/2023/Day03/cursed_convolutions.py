@@ -3,7 +3,7 @@ from typing import TextIO
 import numpy as np
 import scipy
 
-from Years.path_stuff import *
+from Tools.Python.path_stuff import *
 
 
 def parser(raw_data: TextIO):

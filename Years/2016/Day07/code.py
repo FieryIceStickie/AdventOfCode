@@ -2,7 +2,7 @@ import re
 from itertools import chain
 from typing import TextIO
 
-from Years.path_stuff import *
+from Tools.Python.path_stuff import *
 
 abba_pattern = re.compile(r'\w*(?!(\w)\1{3})(\w)(\w)\3\2')
 aba_pattern = re.compile(r'(?=((?!(\w)\2{2})(\w)\w\3))')

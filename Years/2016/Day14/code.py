@@ -5,7 +5,7 @@ from hashlib import md5
 from itertools import count, repeat
 from typing import TextIO
 
-from Years.path_stuff import *
+from Tools.Python.path_stuff import *
 
 
 def parser(raw_data: TextIO):

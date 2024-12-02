@@ -1,6 +1,6 @@
 from typing import Any, Iterable
 
-from Years.path_stuff import *
+from Tools.Python.path_stuff import *
 
 
 def parser(testing_input: Any, file_name: str = '', is_testing: bool = False) -> Iterable[list[str | int]]:

@@ -2,7 +2,7 @@ import re
 from itertools import accumulate, pairwise
 from typing import TextIO
 
-from Years.path_stuff import *
+from Tools.Python.path_stuff import *
 
 
 def parser(raw_data: TextIO):
