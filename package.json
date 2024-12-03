@@ -1,0 +1,26 @@
+{
+  "name": "adventofcode",
+  "version": "1.0.0",
+  "description": "Advent of Code",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/FieryIceStickie/AdventOfCode.git"
+  },
+  "author": "FieryIceStickie",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/FieryIceStickie/AdventOfCode/issues"
+  },
+  "homepage": "https://github.com/FieryIceStickie/AdventOfCode#readme",
+  "dependencies": {
+    "eslint": "^9.11.1"
+  },
+  "devDependencies": {
+    "eslint-config-prettier": "^9.1.0",
+    "prettier": "3.3.3"
+  }
+}

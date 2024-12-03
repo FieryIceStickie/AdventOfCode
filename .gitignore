@@ -4,3 +4,6 @@ Tools/Python/test.txt
 Years/Golf/
 **/.DS_Store
 **/__pycache__/
+
+elm-stuff/
+node_modules/
