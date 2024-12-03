@@ -1,0 +1,4 @@
+name = "AdventOfCode"
+uuid = "5dd7ab4c-ffa9-4df7-ab25-fec300e42d2c"
+authors = ["stickie <71910589+FieryIceStickie@users.noreply.github.com>"]
+version = "0.1.0"
