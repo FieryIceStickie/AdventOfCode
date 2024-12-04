@@ -1,5 +1,7 @@
 from typing import TextIO
 
+import scipy.fftpack.convolve
+
 from Tools.Python.path_stuff import *
 
 import numpy as np
@@ -52,8 +54,8 @@ def part_a_solver(data: str):
 def part_b_solver(data: str):
     keymaps = {
         'X': 3,
-        'A': 2,
         'M': 1,
+        'A': 2,
         'S': -1,
     }
     grid = np.array([[keymaps[v] for v in line] for line in data.splitlines()])
