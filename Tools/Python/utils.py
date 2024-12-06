@@ -1,5 +1,5 @@
 from collections import defaultdict
-from collections.abc import Sequence
+from typing import Self
 from itertools import groupby
 from typing import Iterator, Literal, Iterable
 
@@ -91,5 +91,17 @@ def sgn(n: int) -> int:
     return (n > 0) - (n < 0)
 
 
+class DDict[K, V](defaultdict[K, V]):
+    def dget(self: Self, key: K) -> V:
+        sentinel = object()
+        v = self.get(key, sentinel)
+        return v if v is not sentinel else self.default_factory()
+
+
 if __name__ == '__main__':
-    print(odd_one_out([2, 1, 1, 1, 1, 1, 1]))
+    d = defaultdict(set)
+    for x in range(10, 100):
+        for y in range(x + 1, 100):
+            d[x ** 3 + y ** 3 + 100 * x * y + 7*x + 7*y].add((x, y))
+
+    print({k for k in d if len(d[k]) > 1})
