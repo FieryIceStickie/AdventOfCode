@@ -21,10 +21,7 @@ def check_solvable(target: int, nums: list[int], ops: list[Callable[[int, int], 
             return num == target
         elif num > target:
             return False
-        for op in ops:
-            if solve(idx + 1, op(num, nums[idx])):
-                return True
-        return False
+        return any(solve(idx + 1, op(num, nums[idx])) for op in ops)
     return solve(1, nums[0])
 
 
