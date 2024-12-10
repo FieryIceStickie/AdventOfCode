@@ -1,4 +1,5 @@
 from collections import defaultdict
+from collections.abc import Sequence
 from typing import Self
 from itertools import groupby
 from typing import Iterator, Literal, Iterable
@@ -91,17 +92,22 @@ def sgn(n: int) -> int:
     return (n > 0) - (n < 0)
 
 
-class DDict[K, V](defaultdict[K, V]):
-    def dget(self: Self, key: K) -> V:
-        sentinel = object()
-        v = self.get(key, sentinel)
-        return v if v is not sentinel else self.default_factory()
+def reversed_enumerate[T](seq: Sequence[T], /, start=None) -> Iterator[T]:
+    if start is None:
+        start = len(seq) - 1
+    return (
+        (start - i, v)
+        for i, v in enumerate(reversed(seq))
+    )
+
+
+def sum_range(start: int | range, stop: int = None, step: int = 1) -> int:
+    if isinstance(start, int):
+        r = range(start, stop, step)
+    else:
+        r = start
+    return len(r) * (2 * r.start + r.step * (len(r) - 1)) // 2
 
 
 if __name__ == '__main__':
-    d = defaultdict(set)
-    for x in range(10, 100):
-        for y in range(x + 1, 100):
-            d[x ** 3 + y ** 3 + 100 * x * y + 7*x + 7*y].add((x, y))
-
-    print({k for k in d if len(d[k]) > 1})
+    pass
