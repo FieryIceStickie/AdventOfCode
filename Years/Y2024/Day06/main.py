@@ -42,8 +42,8 @@ def full_solver(grid: dict[complex, bool], guard: complex):
 
 
 if __name__ == '__main__':
-    testing = False
+    testing = True
 
-    with open(test_path if testing else 'input.txt', 'r') as file:
+    with open('test.txt' if testing else 'input.txt', 'r') as file:
         data = parser(file)
     print(*full_solver(*data))
