@@ -1,0 +1,4 @@
+project AoC is
+   for Source_Dirs use ("./**");
+   for Target use "gnatsas";
+end AoC;

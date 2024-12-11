@@ -39,11 +39,7 @@ def full_solver(antennas: dict[str, set[complex]], height: int, width: int):
 
 if __name__ == '__main__':
     testing = False
-    import time
-    st = time.perf_counter()
     with open(test_path if testing else 'input.txt', 'r') as file:
         data = parser(file)
 
     print(*full_solver(*data))
-    ed = time.perf_counter()
-    print(ed - st)
