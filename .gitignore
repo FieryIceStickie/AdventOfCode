@@ -7,3 +7,8 @@ src/Golf/
 
 elm-stuff/
 node_modules/
+
+**/*.beam
+**/*.ez
+**/build
+**/erl_crash.dump

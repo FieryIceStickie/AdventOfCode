@@ -1,106 +1,21 @@
-from typing import TextIO, Protocol, Self
-from itertools import chain, takewhile
-
-from attrs import frozen
+from typing import TextIO
+from itertools import chain, takewhile, repeat, accumulate, islice
 
 from Tools.Python.path_stuff import *
-from Tools.Python.utils import reversed_enumerate, sum_range
-
-
-class Block(Protocol):
-    @property
-    def size(self) -> int:
-        pass
-
-    @property
-    def space(self) -> int:
-        pass
-
-    def can_move(self) -> bool:
-        pass
-
-    def value(self, idx: int) -> int:
-        pass
-
-    def set_block(self, block: Self) -> Self:
-        pass
-
-    def clear(self) -> Self:
-        pass
-
-
-@frozen
-class SingleBlock(Block):
-    _size: int
-    id: int | None
-
-    @property
-    def size(self) -> int:
-        return self._size
-
-    @property
-    def space(self) -> int:
-        return self.size if self.id is None else 0
-
-    def can_move(self) -> bool:
-        return self.id is not None
-
-    def value(self, idx: int) -> int:
-        if self.id is None:
-            return 0
-        return self.id * sum_range(idx, idx + self.size)
-
-    def set_block(self, block: Block) -> Block:
-        return MultiBlock(block, SingleBlock(self.size - block.size, None))
-
-    def clear(self) -> Block:
-        return SingleBlock(self.size, None)
-
-    def __str__(self):
-        return f'{self.id if self.id is not None else '.'}' * self.size
-
-
-@frozen
-class MultiBlock(Block):
-    left: Block
-    right: Block
-
-    @property
-    def size(self) -> int:
-        return self.left.size + self.right.size
-
-    @property
-    def space(self) -> int:
-        return self.right.space
-
-    def can_move(self) -> bool:
-        return False
-
-    def value(self, idx: int) -> int:
-        return self.left.value(idx) + self.right.value(idx + self.left.size)
-
-    def set_block(self, block: Block) -> Block:
-        return MultiBlock(self.left, self.right.set_block(block))
-
-    def clear(self) -> Block:
-        raise NotImplementedError
-
-    def __str__(self):
-        return f'{self.left}{self.right}'
+from Tools.Python.utils import sum_range
 
 
 def parser(raw_data: TextIO):
     return [
-        SingleBlock(int(size), idx // 2 if not idx % 2 else None)
+        (int(size), idx // 2 if not idx % 2 else None)
         for idx, size in enumerate(raw_data.read())
     ]
 
 
-def part_a_solver(data: list[SingleBlock]):
-    *data, = chain(
-        idx // 2 if not idx % 2 else None
-        for idx, block in enumerate(data)
-        for _ in range(block.size)
+def part_a_solver(data: list[tuple[int, int | None]]):
+    *data, = chain.from_iterable(
+        repeat(eyed, size)
+        for idx, (size, eyed) in enumerate(data)
     )
     start = 0
     end = len(data) - 1
@@ -120,20 +35,26 @@ def part_a_solver(data: list[SingleBlock]):
     )
 
 
-def part_b_solver(data: list[Block]):
-    for block_idx, block in reversed_enumerate(data):
-        if not block.can_move():
-            continue
-        for slot_idx, slot in enumerate(data[:block_idx]):
-            if not slot.can_move() and slot.space >= block.size:
-                data[slot_idx] = data[slot_idx].set_block(block)
-                data[block_idx] = data[block_idx].clear()
-                break
-    s = 0
+def part_b_solver(data: list[tuple[int, int | None]]):
     idx = 0
-    for block in data:
-        s += block.value(idx)
-        idx += block.size
+    data = [
+        [[idx, size, eyed], idx := idx + size][0]
+        for size, eyed in data
+    ]
+    s = 0
+    slots = data[1::2]
+    for idx, size, eyed in data[::2][::-1]:
+        for i, (slot_idx, slot_size, _) in enumerate(slots):
+            if size <= slot_size or slot_idx > idx:
+                break
+        if slot_idx > idx:
+            s += eyed * sum_range(idx, idx + size)
+        else:
+            s += eyed * sum_range(slot_idx, slot_idx + size)
+            slots[i][0] += size
+            slots[i][1] -= size
+            if not slots[i][1]:
+                slots.pop(i)
     return s
 
 
