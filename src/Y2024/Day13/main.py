@@ -36,5 +36,4 @@ if __name__ == '__main__':
 
     with open(test_path if testing else 'input.txt', 'r') as file:
         data = parser(file)
-
     print(*full_solver(data))
