@@ -37,7 +37,7 @@ def try_int(inp: str) -> str | int:
 
 def display_visited(visited: set[complex], icons: dict[complex, str] = None,
                     visited_icon: str = '.',
-                    transpose: bool = True):
+                    transpose: bool = False):
     if icons is None:
         icons = dict()
     if transpose:
