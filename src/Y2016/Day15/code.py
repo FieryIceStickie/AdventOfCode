@@ -14,6 +14,12 @@ def parser(raw_data: TextIO):
 
 
 def mul_inv(n: int, b: int) -> tuple[int, int]:
+    """
+    n * s = g mod b
+    g = gcd(n, b)
+    TODO: fix zero div err
+    :return: s, g
+    """
     n %= b
     r0, s0 = b, 0
     r1, s1 = n, 1
