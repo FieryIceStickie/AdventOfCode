@@ -11,6 +11,42 @@ def parser(raw_data: TextIO):
     return [*batched(map(int, re.findall(r'-?\d+', raw_data.read())), 4)]
 
 
+"""
+def part_a_solver(data):
+    grid = np.zeros((h, w), dtype=int)
+    for px, py, vx, vy in data:
+        x, y = sim(px, py, vx, vy, 100)
+        grid[y, x] += 1
+    w2, h2 = w // 2, h // 2
+    return prod(
+        np.sum(a) for a in [grid[:h2, :w2], grid[h2+1:, :w2], grid[:h2, w2+1:], grid[h2+1:, w2+1:]]
+    )
+
+
+def sim(px, py, vx, vy, n):
+    return (px + vx * n) % w, (py + vy * n) % h
+
+
+def part_b_solver(data):
+    tree = {
+        m+1j*d
+        for d in range(4)
+        for m in range(-d, d+1)
+    } | {-2+4j, -1+4j, 1+4j, 2+4j}
+    for s in count(0):
+        grid = {
+            complex(*sim(px, py, vx, vy, s))
+            for px, py, vx, vy in data
+        }
+        if any(
+            z for z in grid
+            if {z+d for d in tree}.issubset(grid)
+        ):
+            display_visited(grid)
+            return s
+"""
+
+
 def full_solver(grid: list[tuple[int, int, int, int]], w: int, h: int):
     grid = [[px, vx, py, vy] for px, py, vx, vy in grid]
     xt = yt = 0

@@ -1,8 +1,6 @@
-from collections import defaultdict
 from collections.abc import Sequence
-from typing import Self
 from itertools import groupby
-from typing import Iterator, Literal, Iterable
+from typing import Iterator, Iterable
 
 deltas = (-1, 1j, 1, -1j)
 corner_deltas = (-1+1j, 1+1j, 1-1j, -1-1j)

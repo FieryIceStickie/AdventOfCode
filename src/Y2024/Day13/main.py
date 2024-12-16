@@ -1,4 +1,4 @@
-from typing import TextIO, Iterable
+from typing import TextIO
 from itertools import batched
 import re
 
