@@ -56,10 +56,12 @@ def full_solver(data: list[int]):
         out.append(f(a, r))
         a = q
 
-    def solve(num: int, target: int) -> int:
+    def solve(num: int, target: int) -> int | None:
         if target == len(program):
             return num
         for r in range(8):
+            if not target and not r:
+                continue
             if f(a := num << 3 | r, r) == program[~target]:
                 if res := solve(a, target + 1):
                     return res
