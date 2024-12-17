@@ -21,9 +21,7 @@ def parser(raw_data: TextIO):
 def full_solver(rules: set[tuple[int, int]], updates: list[list[int]]):
     p1 = p2 = 0
 
-    def cmp(n: int, m: int) -> int:
-        return 1 if (n, m) in rules else -1
-
+    key_func = cmp_to_key(lambda n, m: 1 if (n, m) in rules else -1)
     for update in updates:
         if all(
             (n, m) in rules
@@ -31,15 +29,18 @@ def full_solver(rules: set[tuple[int, int]], updates: list[list[int]]):
         ):
             p1 += update[len(update) // 2]
         else:
-            update.sort(key=cmp_to_key(cmp))
+            update.sort(key=key_func)
             p2 += update[len(update) // 2]
     return p1, p2
 
 
 if __name__ == '__main__':
     testing = False
-
+    import time
+    st = time.perf_counter()
     with open(test_path if testing else 'input.txt', 'r') as file:
         data = parser(file)
 
     print(*full_solver(*data))
+    ed = time.perf_counter()
+    print(ed - st)

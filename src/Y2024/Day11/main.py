@@ -37,4 +37,3 @@ if __name__ == '__main__':
         data = parser(file)
     print(part_a_solver(data))
     print(part_b_solver(data))
-    print(blink.cache_parameters())

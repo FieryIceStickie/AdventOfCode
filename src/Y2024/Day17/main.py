@@ -46,9 +46,10 @@ def sim(reg: list[int], program: list[int]) -> list[int]:
 def full_solver(data: list[int]):
     a, _, _, *program = data
     v, w = [n for c, n in batched(program, 2) if c == 1]
+    vw = v ^ w
 
     def f(a: int, r: int) -> int:
-        return ((r ^ v ^ w) ^ (a >> (r ^ v))) & 7
+        return (r ^ vw ^ a >> (r ^ v)) & 7
 
     out = []
     while a:
