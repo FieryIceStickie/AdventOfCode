@@ -6,7 +6,7 @@ from attrs import define, field
 import heapq
 
 from Tools.Python.path_stuff import *
-from Tools.Python.utils import deltas
+from Tools.Python.Utils.utils import deltas
 
 type Graph = dict[complex, dict[complex, tuple[tuple[complex, complex], int, int]]]
 type LocFacing = tuple[complex, complex]
