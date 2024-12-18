@@ -89,6 +89,5 @@ if __name__ == '__main__':
     size = 7 if testing else 71
     with open(test_path if testing else 'input.txt', 'r') as file:
         data = parser(file)
-
     print(part_a_solver(data, size))
     print(part_b_solver(data, size))
