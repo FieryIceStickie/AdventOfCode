@@ -1,6 +1,6 @@
 from collections.abc import Sequence
 from itertools import groupby
-from typing import Iterator, Iterable
+from typing import Iterator, Iterable, NamedTuple
 
 deltas = (-1, 1j, 1, -1j)
 corner_deltas = (-1+1j, 1+1j, 1-1j, -1-1j)
@@ -105,6 +105,18 @@ def sum_range(start: int | range, stop: int = None, step: int = 1) -> int:
     else:
         r = start
     return len(r) * (2 * r.start + r.step * (len(r) - 1)) // 2
+
+
+class Res(NamedTuple):
+    p1: int
+    p2: int
+
+    def __add__(self, other):
+        return Res(self.p1 + other.p1, self.p2 + other.p2)
+
+
+def res_sum(iterable: Iterable[Res]) -> Res:
+    return sum(iterable, Res(0, 0))
 
 
 if __name__ == '__main__':
