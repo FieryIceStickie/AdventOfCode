@@ -3,7 +3,7 @@ from attrs import define, field
 from functools import cache
 
 from Tools.Python.path_stuff import *
-from Tools.Python.Utils.utils import Res, res_sum
+from Tools.Python.utils.utils import Res, res_sum
 
 
 def parser(raw_data: TextIO):

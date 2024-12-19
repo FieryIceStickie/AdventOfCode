@@ -2,7 +2,7 @@ from typing import TextIO
 from itertools import chain, takewhile, repeat
 
 from Tools.Python.path_stuff import *
-from Tools.Python.Utils.utils import sum_range
+from Tools.Python.utils.utils import sum_range
 
 
 def parser(raw_data: TextIO):

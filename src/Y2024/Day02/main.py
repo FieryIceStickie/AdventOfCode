@@ -5,7 +5,7 @@ from Tools.Python.path_stuff import *
 from itertools import pairwise
 
 from math import ceil
-from Tools.Python.Utils.utils import sgn
+from Tools.Python.utils.utils import sgn
 
 
 def parser(raw_data: TextIO):

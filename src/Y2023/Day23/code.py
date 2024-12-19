@@ -1,7 +1,7 @@
 from typing import TextIO
 
 from Tools.Python.path_stuff import *
-from Tools.Python.Utils.utils import deltas
+from Tools.Python.utils.utils import deltas
 
 
 def parser(raw_data: TextIO):

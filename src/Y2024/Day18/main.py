@@ -4,7 +4,7 @@ from collections import deque
 from itertools import batched
 from attrs import define
 
-from Tools.Python.Utils.utils import reversed_enumerate
+from Tools.Python.utils.utils import reversed_enumerate
 from Tools.Python.path_stuff import *
 
 
