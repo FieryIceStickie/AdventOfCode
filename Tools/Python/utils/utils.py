@@ -132,7 +132,7 @@ class _slice:
         return item
 
 
-# TODO: make this not incredibly slow and bloated
+# TODO: make this not slow and bloated
 @frozen
 class close_enumerate[M, R: Real]:
     """
