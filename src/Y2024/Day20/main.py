@@ -3,7 +3,6 @@ from typing import TextIO
 from numpy.random.mtrand import Sequence
 
 from Tools.Python.path_stuff import *
-# from Tools.Python.utils.utils import close_enumerate
 
 
 def parser(raw_data: TextIO):
