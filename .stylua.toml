@@ -1,0 +1,5 @@
+quote_style = 'AutoPreferSingle'
+call_parentheses = 'NoSingleTable'
+
+[sort_requires]
+enabled = true
