@@ -61,6 +61,7 @@ def close_enumerate(path: Sequence[complex], target: complex, start: int):
             yield idx, dist
             idx += 1
 
+
 if __name__ == '__main__':
     testing = False
     import time
