@@ -1,6 +1,5 @@
 from typing import TextIO
-
-from numpy.random.mtrand import Sequence
+from collections.abc import Sequence
 
 from Tools.Python.path_stuff import *
 
