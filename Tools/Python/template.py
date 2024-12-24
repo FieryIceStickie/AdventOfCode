@@ -1,7 +1,5 @@
 from typing import TextIO
 
-from Tools.Python.path_stuff import *
-
 
 def parser(raw_data: TextIO):
     return raw_data.read().splitlines()
@@ -18,7 +16,14 @@ def part_b_solver(data):
 if __name__ == '__main__':
     testing = False
 
-    with open(test_path if testing else 'input.txt', 'r') as file:
+    try:
+        from Tools.Python.path_stuff import test_path
+    except ModuleNotFoundError:
+        path = 'input.txt'
+    else:
+        path = test_path if testing else 'input.txt'
+
+    with open(path, 'r') as file:
         data = parser(file)
 
     print(part_a_solver(data))

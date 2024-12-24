@@ -1,9 +1,12 @@
+from functools import wraps
 from collections.abc import Sequence, Iterator, Callable
 from itertools import groupby
 from typing import Iterator, Iterable, NamedTuple, Literal, overload, Protocol
 from numbers import Real
 import math
 import operator
+import multiprocessing
+import time
 
 from attrs import frozen, define, field, evolve
 
@@ -182,6 +185,23 @@ class close_enumerate[M, R: Real]:
                 yield idx, v, dist
                 idx += 1
 
+
+@define
+class TimestampInfo:
+    name: str
+    st: int
+    ed: int
+
+
+def collect_mp_info(func):
+    """https://stackoverflow.com/questions/53751050/multiprocessing-understanding-logic-behind-chunksize"""
+    @wraps(func)
+    def inner(*args, **kwargs):
+        st = time.time_ns()
+        res = func(*args, **kwargs)
+        ed = time.time_ns()
+        return res, TimestampInfo(name=multiprocessing.current_process().name, st=st, ed=ed)
+    return inner
 
 if __name__ == '__main__':
     pass
