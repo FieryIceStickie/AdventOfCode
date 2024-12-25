@@ -1,4 +1,3 @@
-from collections.abc import Callable
 from typing import TextIO, Self, ClassVar
 import re
 from operator import and_, or_, xor
