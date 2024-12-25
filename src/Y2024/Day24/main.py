@@ -1,11 +1,10 @@
-from collections.abc import Callable, Iterable, Iterator
-from typing import TextIO
+from collections.abc import Callable
+from typing import TextIO, Self, ClassVar
 import re
 from operator import and_, or_, xor
-import ast
 
-type Op = Callable[[int, int], int]
-type Eqn = tuple[str, str, str]
+from attrs import define
+from functools import total_ordering
 
 
 def parser(raw_data: TextIO):
@@ -21,116 +20,93 @@ def parser(raw_data: TextIO):
     return values, eqns, z_count
 
 
-def full_solver(values: dict[str, int], eqns: dict[str, Eqn], z_count: int):
-    pass
+@total_ordering
+@define(frozen=True, order=False, match_args=True)
+class Node:
+    prio_dict: ClassVar[dict[str, int]] = {'XOR': 0, 'AND': 1, 'OR': 2}
+    name: str
+    op: str
+    left: str | Self
+    right: str | Self
+    value: int
+
+    def __lt__(self, other):
+        if isinstance(other, str):
+            return True
+        if self.op != other.op:
+            return self.prio_dict[self.op] < self.prio_dict[other.op]
+        if isinstance(self.left, str) and isinstance(other.left, str):
+            return self.left[0] in 'xy'
+        return self.left < other.left
 
 
-def calculate(
-        targets: Iterable[str],
-        values: dict[str, int],
-        eqns: dict[str, tuple[Op, str, str]]
-) -> Iterator[int]:
-    def calc(target):
-        if target in values:
-            return values[target]
-        op, a, b = eqns[target]
-        res = op(calc(a), calc(b))
-        values[target] = res
-        return res
-
-    return map(calc, targets)
+def name(s: str | Node) -> str:
+    match s:
+        case str(): return s
+        case Node(name=s): return s
 
 
-def part_a_solver(values: dict[str, int], eqns: dict[str, Eqn]):
-    targets = sorted(
-        name for name in eqns
-        if name.startswith('z')
-    )
-    values = values.copy()
+def full_solver(values: dict[str, int], eqns: dict[str, tuple[str, str, str]], z_count: int):
+    swaps = set()
     op_dict = {'AND': and_, 'OR': or_, 'XOR': xor}
-    eqns = {res: (op_dict[op], a, b) for res, (op, a, b) in eqns.items()}
-    res = calculate(targets, values, eqns)
-    return int(''.join(map(str, res))[::-1], 2)
 
+    def traverse(node: str) -> str | Node:
+        nonlocal jumper
+        if node in jumper or node not in eqns:
+            return node
+        op, a, b = eqns[node]
+        a, b = traverse(a), traverse(b)
+        if b < a: a, b = b, a
+        res = op_dict[op](values[name(a)], values[name(b)])
+        values[node] = res
+        return Node(node, op, a, b, res)
 
-# def part_b_solver(values: dict[str, int], eqns: dict[str, Eqn]):
-#     pass
-
-
-def part_b_solver(values: dict[str, int], eqns: dict[str, Eqn]):
-    names = {*values}
-    op_dict = {'AND': ast.BitAnd(), 'OR': ast.BitOr(), 'XOR': ast.BitXor()}
-    targets = sorted(
-        name for name in eqns
-        if name.startswith('z')
+    jumper = set()
+    for z in range(z_count):
+        tree = traverse(f'z{z:02}')
+        if res := matcher(tree, z, jumper):
+            swaps.add(res)
+        try:
+            jumper = {tree.left.name, tree.right.name}
+        except AttributeError:
+            jumper = set()
+    return (
+        int(''.join(str(values[f'z{z:02}']) for z in range(z_count))[::-1], 2),
+        ','.join(sorted(swaps))
     )
-    eqns = {
-        res: ast.BinOp(
-            left=ast.Name(a),
-            op=op_dict[op],
-            right=ast.Name(b)
-        )
-        for res, (op, a, b) in eqns.items()
-    }
-
-    def swap(k1, k2):
-        eqns[k1], eqns[k2] = eqns[k2], eqns[k1]
-    swap('z06', 'dhg')
-    swap('brk', 'dpd')
-    swap('z23', 'bhd')
-    swap('z38', 'nbf')
-    [*trees], vals = make_trees(targets, names, eqns)
-
-    for tree in trees:
-        print(ast.unparse(tree))
-    print()
-    for name, (eqn, *_) in vals.items():
-        print(name, ast.unparse(eqn))
-    print(','.join(sorted(['z38', 'nbf', 'z23', 'bhd', 'brk', 'dpd', 'z06', 'dhg'])))
-    return
 
 
-def make_trees(
-    targets: Iterable[str],
-    names: set[str],
-    eqns: dict[str, ast.BinOp]
-) -> Iterator[ast.BinOp]:
-    values = {}
-    op_values = {ast.BitXor: 0, ast.BitAnd: 1, ast.BitOr: 2}
-
-    def calc(target: str):
-        if target in names:
-            if target in names:
-                return ast.Name(target), 0
-            return values[target]
-        match eqns[target]:
-            case ast.BinOp(
-                left=ast.Name(a),
-                right=ast.Name(b),
-            ):
-                left, ldepth = calc(a)
-                right, rdepth = calc(b)
-            case _:
-                raise ValueError('Unknown ast')
-        if (rdepth, value(right)) < (ldepth, value(left)):
-            left, right = right, left
-        depth = max(ldepth, rdepth)
-        res = ast.BinOp(
-            left=left,
-            op=eqns[target].op,
-            right=right,
-        )
-        values[target] = res, depth
-        return res, depth + 1
-
-    def value(node: ast.AST):
-        match node:
-            case ast.Name(name):
-                return 0, name
-            case ast.BinOp(op=op):
-                return 1, op_values[type(op)]
-
-    return (c for c, _ in map(calc, targets)), values
+def matcher(tree: Node, z: int, jumper: set[str]):
+    if z < 3 or z == 45:
+        return
+    match tree:
+        case Node(name=name, op=op) if op != 'XOR':
+            return name
+        case Node(
+            left=Node(name=name, op=op, left=left, right=right)
+        ) if op != 'XOR' or {left, right} != {f'x{z:02}', f'y{z:02}'}:
+            return name
+        case Node(
+            op='XOR',
+            right=Node(name=name, op=op),
+        ) if op != 'OR':
+            return name
+        case Node(
+            op='XOR',
+            right=Node(
+                op='OR',
+                left=Node(name=name, op=op, left=left, right=right),
+            )
+        ) if op != 'AND' or {left, right} != {f'x{z - 1:02}', f'y{z - 1:02}'}:
+            return name
+        case Node(
+            op='XOR',
+            right=Node(
+                op='OR',
+                right=Node(name=name, op=op, left=left, right=right),
+            )
+        ) if op != 'AND' or {left, right} != jumper:
+            return name
 
 
 if __name__ == '__main__':
@@ -146,5 +122,4 @@ if __name__ == '__main__':
     with open(path, 'r') as file:
         data = parser(file)
 
-    print(part_a_solver(*data[:-1]))
-    print(part_b_solver(*data[:-1]))
+    print(*full_solver(*data))
