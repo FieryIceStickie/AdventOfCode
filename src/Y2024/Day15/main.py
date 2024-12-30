@@ -34,7 +34,7 @@ def part_a_solver(grid: set[complex], boxes: set[complex], moves: list[complex],
     for m in moves:
         z += m
         can_move = z not in grid
-        if z in boxes and (can_move := (b := next(b for n in count(1) if (b := z + n*m) not in boxes)) not in grid):
+        if z in boxes and (can_move := (b := next(b for n in count(1) if (b := z + n * m) not in boxes)) not in grid):
             boxes ^= {z, b}
         elif not can_move:
             z -= m
@@ -56,7 +56,7 @@ def part_b_solver(grid: set[complex], boxes: set[complex], moves: list[complex],
                     [box + d + dy for dy in (-1j / 2, 0, 1j / 2)]
                 ) if b in boxes))
 
-    for m in (m / 2 if m.imag else m for m in moves):
+    for i, m in enumerate(m / 2 if m.imag else m for m in moves):
         z += m
         can_move = z not in grid
         pushing = set()
@@ -104,6 +104,6 @@ if __name__ == '__main__':
 
     p1_disp, p1 = part_a_solver(*data)
     p2_disp, p2 = part_b_solver(*data)
-    print(p1_disp, end='\n\n')
-    print(p2_disp)
+    # print(p1_disp, end='\n\n')
+    # print(p2_disp)
     print(p1, p2)
