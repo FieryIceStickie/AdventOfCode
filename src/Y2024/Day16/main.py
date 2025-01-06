@@ -147,13 +147,14 @@ def full_solver(graph: Graph, start: complex, end: complex):
             visited[node.loc_facing] = VisitedNode(node.cost)
         visited[node.loc_facing].preds.add(node.pred)
         visited[node.loc_facing].tile_count += node.num_tiles - 1
-
         if has_visited:
             continue
+
         if node.loc_facing[0] == end:
             p1 = node.cost
             ends.add(node.loc_facing)
             continue
+
         for facing, (new_loc_facing, num_tiles, num_turns) in graph[node.loc_facing[0]].items():
             if facing == node.loc_facing[1]:
                 new_cost = node.cost + num_tiles + 1000 * num_turns
