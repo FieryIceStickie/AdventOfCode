@@ -19,7 +19,7 @@ def parse(filename):
         if not file.readline():
             break
     file.close()
-    ret3333locks, keys
+    return locks, keys
 
 def solve(locks, keys):
     s = 0

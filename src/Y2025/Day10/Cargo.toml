@@ -1,0 +1,11 @@
+[package]
+name = "Day10"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+z3 = "0.19.6"
+
+[[bin]]
+name = "Day10"
+path = "main.rs"

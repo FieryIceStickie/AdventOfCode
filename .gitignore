@@ -4,9 +4,12 @@ Tools/Python/test.txt
 src/Golf/
 **/.DS_Store
 **/__pycache__/
+python-0.9.1/
 
 elm-stuff/
 node_modules/
+.clj-kondo/
+.lsp/
 
 **/*.beam
 **/*.ez
@@ -15,3 +18,4 @@ node_modules/
 
 **/debug
 **/target
+

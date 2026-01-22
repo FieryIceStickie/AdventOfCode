@@ -87,7 +87,7 @@ fn union_set(z1: Point, z2: Point) void {
 }
 
 pub fn main() !void {
-    const stdout = std.io.getStdOut().writer();
+    const stdout = std.fs.File.stdout.writer();
 
     var file = try std.fs.cwd().openFile("input.txt", .{});
     defer file.close();
